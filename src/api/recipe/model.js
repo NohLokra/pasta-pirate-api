@@ -1,13 +1,10 @@
 import mongoose, { Schema } from 'mongoose'
 
 const recipeSchema = new Schema({
-  user: {
+  author: {
     type: Schema.ObjectId,
     ref: 'User',
     required: true
-  },
-  ingredients: {
-    type: String
   },
   name: {
     type: String
@@ -15,16 +12,22 @@ const recipeSchema = new Schema({
   description: {
     type: String
   },
-  picture: {
+  cookingTime: {
     type: String
   },
-  preparation_time: {
+  preparationTime: {
     type: String
   },
-  cooking_time: {
+  image: {
     type: String
+  },
+  ingredients: {
+    type: Array
   },
   type: {
+    type: String
+  },
+  createdAt: {
     type: String
   }
 }, {
@@ -40,13 +43,13 @@ recipeSchema.methods = {
     const view = {
       // simple view
       id: this.id,
-      user: this.user.view(full),
-      ingredients: this.ingredients,
+      author: this.author.view(full),
       name: this.name,
       description: this.description,
-      picture: this.picture,
-      preparation_time: this.preparation_time,
-      cooking_time: this.cooking_time,
+      cookingTime: this.cookingTime,
+      preparationTime: this.preparationTime,
+      image: this.image,
+      ingredients: this.ingredients,
       type: this.type,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt

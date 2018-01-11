@@ -11,6 +11,12 @@ const ingredientSchema = new Schema({
   },
   quantity: {
     type: String
+  },
+  isInStock: {
+    type: String
+  },
+  isInShoppingList: {
+    type: String
   }
 }, {
   timestamps: true,
@@ -28,6 +34,8 @@ ingredientSchema.methods = {
       user: this.user.view(full),
       aliment: this.aliment,
       quantity: this.quantity,
+      isInStock: this.isInStock,
+      isInShoppingList: this.isInShoppingList,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }

@@ -5,7 +5,7 @@ let user, ingredient
 
 beforeEach(async () => {
   user = await User.create({ email: 'a@a.com', password: '123456' })
-  ingredient = await Ingredient.create({ user, aliment: 'test', quantity: 'test' })
+  ingredient = await Ingredient.create({ user, aliment: 'test', quantity: 'test', isInStock: 'test', isInShoppingList: 'test' })
 })
 
 describe('view', () => {
@@ -17,6 +17,8 @@ describe('view', () => {
     expect(view.user.id).toBe(user.id)
     expect(view.aliment).toBe(ingredient.aliment)
     expect(view.quantity).toBe(ingredient.quantity)
+    expect(view.isInStock).toBe(ingredient.isInStock)
+    expect(view.isInShoppingList).toBe(ingredient.isInShoppingList)
     expect(view.createdAt).toBeTruthy()
     expect(view.updatedAt).toBeTruthy()
   })
@@ -29,6 +31,8 @@ describe('view', () => {
     expect(view.user.id).toBe(user.id)
     expect(view.aliment).toBe(ingredient.aliment)
     expect(view.quantity).toBe(ingredient.quantity)
+    expect(view.isInStock).toBe(ingredient.isInStock)
+    expect(view.isInShoppingList).toBe(ingredient.isInShoppingList)
     expect(view.createdAt).toBeTruthy()
     expect(view.updatedAt).toBeTruthy()
   })

@@ -1,13 +1,18 @@
 import mongoose, { Schema } from 'mongoose'
 
-const alimentSchema = new Schema({
-  name: {
+const shoppingListIngredientSchema = new Schema({
+  user: {
+    type: Schema.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  aliment: {
     type: String
   },
-  image: {
+  quantity: {
     type: String
   },
-  type: {
+  isTaken: {
     type: String
   }
 }, {
@@ -18,14 +23,15 @@ const alimentSchema = new Schema({
   }
 })
 
-alimentSchema.methods = {
+shoppingListIngredientSchema.methods = {
   view (full) {
     const view = {
       // simple view
       id: this.id,
-      name: this.name,
-      image: this.image,
-      type: this.type,
+      user: this.user.view(full),
+      aliment: this.aliment,
+      quantity: this.quantity,
+      isTaken: this.isTaken,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
@@ -37,7 +43,7 @@ alimentSchema.methods = {
   }
 }
 
-const model = mongoose.model('Aliment', alimentSchema)
+const model = mongoose.model('ShoppingListIngredient', shoppingListIngredientSchema)
 
 export const schema = model.schema
 export default model

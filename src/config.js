@@ -37,7 +37,7 @@ const config = {
   },
   test: {
     mongo: {
-      uri: 'mongodb://localhost/pasta-pirate-api-test',
+      uri: 'mongodb://localhost/pasta-pirate-test',
       options: {
         debug: false
       }
@@ -45,7 +45,7 @@ const config = {
   },
   development: {
     mongo: {
-      uri: 'mongodb://localhost/pasta-pirate-api-dev',
+      uri: 'mongodb://localhost/pasta-pirate',
       options: {
         debug: true
       }
@@ -55,7 +55,7 @@ const config = {
     ip: process.env.IP || undefined,
     port: process.env.PORT || 8080,
     mongo: {
-      uri: process.env.MONGODB_URI || 'mongodb://localhost/pasta-pirate-api'
+      uri: process.env.MONGODB_URI || 'mongodb://localhost/pasta-pirate'
     }
   }
 }

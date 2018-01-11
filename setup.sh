@@ -1,3 +1,4 @@
+sudo service docker start
 docker kill $(docker ps -aq)
 docker rm $(docker ps -aq)
 docker build -t ppa:latest ./

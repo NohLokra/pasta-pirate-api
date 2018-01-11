@@ -7,7 +7,7 @@ import { schema } from './model'
 export Recipe, { schema } from './model'
 
 const router = new Router()
-const { ingredients, name, description, picture, preparation_time, cooking_time, type } = schema.tree
+const { name, description, cookingTime, preparationTime, image, ingredients, type, createdAt } = schema.tree
 
 /**
  * @api {post} /recipes Create recipe
@@ -15,13 +15,14 @@ const { ingredients, name, description, picture, preparation_time, cooking_time,
  * @apiGroup Recipe
  * @apiPermission user
  * @apiParam {String} access_token user access token.
- * @apiParam ingredients Recipe's ingredients.
  * @apiParam name Recipe's name.
  * @apiParam description Recipe's description.
- * @apiParam picture Recipe's picture.
- * @apiParam preparation_time Recipe's preparation_time.
- * @apiParam cooking_time Recipe's cooking_time.
+ * @apiParam cookingTime Recipe's cookingTime.
+ * @apiParam preparationTime Recipe's preparationTime.
+ * @apiParam image Recipe's image.
+ * @apiParam ingredients Recipe's ingredients.
  * @apiParam type Recipe's type.
+ * @apiParam createdAt Recipe's createdAt.
  * @apiSuccess {Object} recipe Recipe's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Recipe not found.
@@ -29,23 +30,19 @@ const { ingredients, name, description, picture, preparation_time, cooking_time,
  */
 router.post('/',
   token({ required: true }),
-  body({ ingredients, name, description, picture, preparation_time, cooking_time, type }),
+  body({ name, description, cookingTime, preparationTime, image, ingredients, type, createdAt }),
   create)
 
 /**
  * @api {get} /recipes Retrieve recipes
  * @apiName RetrieveRecipes
  * @apiGroup Recipe
- * @apiPermission user
- * @apiParam {String} access_token user access token.
  * @apiUse listParams
  * @apiSuccess {Number} count Total amount of recipes.
  * @apiSuccess {Object[]} rows List of recipes.
  * @apiError {Object} 400 Some parameters may contain invalid values.
- * @apiError 401 user access only.
  */
 router.get('/',
-  token({ required: true }),
   query(),
   index)
 
@@ -53,15 +50,11 @@ router.get('/',
  * @api {get} /recipes/:id Retrieve recipe
  * @apiName RetrieveRecipe
  * @apiGroup Recipe
- * @apiPermission user
- * @apiParam {String} access_token user access token.
  * @apiSuccess {Object} recipe Recipe's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Recipe not found.
- * @apiError 401 user access only.
  */
 router.get('/:id',
-  token({ required: true }),
   show)
 
 /**
@@ -70,13 +63,14 @@ router.get('/:id',
  * @apiGroup Recipe
  * @apiPermission user
  * @apiParam {String} access_token user access token.
- * @apiParam ingredients Recipe's ingredients.
  * @apiParam name Recipe's name.
  * @apiParam description Recipe's description.
- * @apiParam picture Recipe's picture.
- * @apiParam preparation_time Recipe's preparation_time.
- * @apiParam cooking_time Recipe's cooking_time.
+ * @apiParam cookingTime Recipe's cookingTime.
+ * @apiParam preparationTime Recipe's preparationTime.
+ * @apiParam image Recipe's image.
+ * @apiParam ingredients Recipe's ingredients.
  * @apiParam type Recipe's type.
+ * @apiParam createdAt Recipe's createdAt.
  * @apiSuccess {Object} recipe Recipe's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Recipe not found.
@@ -84,21 +78,21 @@ router.get('/:id',
  */
 router.put('/:id',
   token({ required: true }),
-  body({ ingredients, name, description, picture, preparation_time, cooking_time, type }),
+  body({ name, description, cookingTime, preparationTime, image, ingredients, type, createdAt }),
   update)
 
 /**
  * @api {delete} /recipes/:id Delete recipe
  * @apiName DeleteRecipe
  * @apiGroup Recipe
- * @apiPermission user
- * @apiParam {String} access_token user access token.
+ * @apiPermission admin
+ * @apiParam {String} access_token admin access token.
  * @apiSuccess (Success 204) 204 No Content.
  * @apiError 404 Recipe not found.
- * @apiError 401 user access only.
+ * @apiError 401 admin access only.
  */
 router.delete('/:id',
-  token({ required: true }),
+  token({ required: true, roles: ['admin'] }),
   destroy)
 
 export default router

@@ -4,40 +4,38 @@ import { middleware as body } from 'bodymen'
 import { token } from '../../services/passport'
 import { create, index, show, update, destroy } from './controller'
 import { schema } from './model'
-export Ingredient, { schema } from './model'
+export Stock, { schema } from './model'
 
 const router = new Router()
-const { aliment, quantity, isInStock, isInShoppingList } = schema.tree
+const { aliment, quantity } = schema.tree
 
 /**
- * @api {post} /ingredients Create ingredient
- * @apiName CreateIngredient
- * @apiGroup Ingredient
+ * @api {post} /stocks Create stock
+ * @apiName CreateStock
+ * @apiGroup Stock
  * @apiPermission user
  * @apiParam {String} access_token user access token.
- * @apiParam aliment Ingredient's aliment.
- * @apiParam quantity Ingredient's quantity.
- * @apiParam isInStock Ingredient's isInStock.
- * @apiParam isInShoppingList Ingredient's isInShoppingList.
- * @apiSuccess {Object} ingredient Ingredient's data.
+ * @apiParam aliment Stock's aliment.
+ * @apiParam quantity Stock's quantity.
+ * @apiSuccess {Object} stock Stock's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
- * @apiError 404 Ingredient not found.
+ * @apiError 404 Stock not found.
  * @apiError 401 user access only.
  */
 router.post('/',
   token({ required: true }),
-  body({ aliment, quantity, isInStock, isInShoppingList }),
+  body({ aliment, quantity }),
   create)
 
 /**
- * @api {get} /ingredients Retrieve ingredients
- * @apiName RetrieveIngredients
- * @apiGroup Ingredient
+ * @api {get} /stocks Retrieve stocks
+ * @apiName RetrieveStocks
+ * @apiGroup Stock
  * @apiPermission user
  * @apiParam {String} access_token user access token.
  * @apiUse listParams
- * @apiSuccess {Number} count Total amount of ingredients.
- * @apiSuccess {Object[]} rows List of ingredients.
+ * @apiSuccess {Number} count Total amount of stocks.
+ * @apiSuccess {Object[]} rows List of stocks.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 401 user access only.
  */
@@ -47,14 +45,14 @@ router.get('/',
   index)
 
 /**
- * @api {get} /ingredients/:id Retrieve ingredient
- * @apiName RetrieveIngredient
- * @apiGroup Ingredient
+ * @api {get} /stocks/:id Retrieve stock
+ * @apiName RetrieveStock
+ * @apiGroup Stock
  * @apiPermission user
  * @apiParam {String} access_token user access token.
- * @apiSuccess {Object} ingredient Ingredient's data.
+ * @apiSuccess {Object} stock Stock's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
- * @apiError 404 Ingredient not found.
+ * @apiError 404 Stock not found.
  * @apiError 401 user access only.
  */
 router.get('/:id',
@@ -62,33 +60,31 @@ router.get('/:id',
   show)
 
 /**
- * @api {put} /ingredients/:id Update ingredient
- * @apiName UpdateIngredient
- * @apiGroup Ingredient
+ * @api {put} /stocks/:id Update stock
+ * @apiName UpdateStock
+ * @apiGroup Stock
  * @apiPermission user
  * @apiParam {String} access_token user access token.
- * @apiParam aliment Ingredient's aliment.
- * @apiParam quantity Ingredient's quantity.
- * @apiParam isInStock Ingredient's isInStock.
- * @apiParam isInShoppingList Ingredient's isInShoppingList.
- * @apiSuccess {Object} ingredient Ingredient's data.
+ * @apiParam aliment Stock's aliment.
+ * @apiParam quantity Stock's quantity.
+ * @apiSuccess {Object} stock Stock's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
- * @apiError 404 Ingredient not found.
+ * @apiError 404 Stock not found.
  * @apiError 401 user access only.
  */
 router.put('/:id',
   token({ required: true }),
-  body({ aliment, quantity, isInStock, isInShoppingList }),
+  body({ aliment, quantity }),
   update)
 
 /**
- * @api {delete} /ingredients/:id Delete ingredient
- * @apiName DeleteIngredient
- * @apiGroup Ingredient
+ * @api {delete} /stocks/:id Delete stock
+ * @apiName DeleteStock
+ * @apiGroup Stock
  * @apiPermission user
  * @apiParam {String} access_token user access token.
  * @apiSuccess (Success 204) 204 No Content.
- * @apiError 404 Ingredient not found.
+ * @apiError 404 Stock not found.
  * @apiError 401 user access only.
  */
 router.delete('/:id',

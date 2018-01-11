@@ -7,42 +7,37 @@ import { schema } from './model'
 export Aliment, { schema } from './model'
 
 const router = new Router()
-const { name, picture, type, unit } = schema.tree
+const { name, image, type } = schema.tree
 
 /**
  * @api {post} /aliments Create aliment
  * @apiName CreateAliment
  * @apiGroup Aliment
- * @apiPermission user
- * @apiParam {String} access_token user access token.
+ * @apiPermission admin
+ * @apiParam {String} access_token admin access token.
  * @apiParam name Aliment's name.
- * @apiParam picture Aliment's picture.
+ * @apiParam image Aliment's image.
  * @apiParam type Aliment's type.
- * @apiParam unit Aliment's unit.
  * @apiSuccess {Object} aliment Aliment's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Aliment not found.
- * @apiError 401 user access only.
+ * @apiError 401 admin access only.
  */
 router.post('/',
-  token({ required: true }),
-  body({ name, picture, type, unit }),
+  token({ required: true, roles: ['admin'] }),
+  body({ name, image, type }),
   create)
 
 /**
  * @api {get} /aliments Retrieve aliments
  * @apiName RetrieveAliments
  * @apiGroup Aliment
- * @apiPermission user
- * @apiParam {String} access_token user access token.
  * @apiUse listParams
  * @apiSuccess {Number} count Total amount of aliments.
  * @apiSuccess {Object[]} rows List of aliments.
  * @apiError {Object} 400 Some parameters may contain invalid values.
- * @apiError 401 user access only.
  */
 router.get('/',
-  token({ required: true }),
   query(),
   index)
 
@@ -50,49 +45,44 @@ router.get('/',
  * @api {get} /aliments/:id Retrieve aliment
  * @apiName RetrieveAliment
  * @apiGroup Aliment
- * @apiPermission user
- * @apiParam {String} access_token user access token.
  * @apiSuccess {Object} aliment Aliment's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Aliment not found.
- * @apiError 401 user access only.
  */
 router.get('/:id',
-  token({ required: true }),
   show)
 
 /**
  * @api {put} /aliments/:id Update aliment
  * @apiName UpdateAliment
  * @apiGroup Aliment
- * @apiPermission user
- * @apiParam {String} access_token user access token.
+ * @apiPermission admin
+ * @apiParam {String} access_token admin access token.
  * @apiParam name Aliment's name.
- * @apiParam picture Aliment's picture.
+ * @apiParam image Aliment's image.
  * @apiParam type Aliment's type.
- * @apiParam unit Aliment's unit.
  * @apiSuccess {Object} aliment Aliment's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Aliment not found.
- * @apiError 401 user access only.
+ * @apiError 401 admin access only.
  */
 router.put('/:id',
-  token({ required: true }),
-  body({ name, picture, type, unit }),
+  token({ required: true, roles: ['admin'] }),
+  body({ name, image, type }),
   update)
 
 /**
  * @api {delete} /aliments/:id Delete aliment
  * @apiName DeleteAliment
  * @apiGroup Aliment
- * @apiPermission user
- * @apiParam {String} access_token user access token.
+ * @apiPermission admin
+ * @apiParam {String} access_token admin access token.
  * @apiSuccess (Success 204) 204 No Content.
  * @apiError 404 Aliment not found.
- * @apiError 401 user access only.
+ * @apiError 401 admin access only.
  */
 router.delete('/:id',
-  token({ required: true }),
+  token({ required: true, roles: ['admin'] }),
   destroy)
 
 export default router
