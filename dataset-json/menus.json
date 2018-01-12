@@ -1,0 +1,1 @@
+{ "_id" : ObjectId("5a3b9cd7a9e001432b7c76c8"), "starter" : ObjectId("5a3b933ee580653ac7eb01f2"), "dish" : ObjectId("5a3b9772e580653ac7eb01f3"), "dessert" : ObjectId("5a3b7d7931e87169e767bdfb"), "user" : ObjectId("5a58b155a26d7e0b95a386f4") }

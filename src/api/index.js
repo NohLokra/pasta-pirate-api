@@ -5,7 +5,6 @@ import aliment from './aliment'
 import recipe from './recipe'
 import menu from './menu'
 import ingredient from './ingredient'
-import menu from './menu'
 import planning from './planning'
 import shoppingListIngredient from './shopping-list-ingredient'
 import shoppingList from './shopping-list'
@@ -42,7 +41,6 @@ router.use('/aliments', aliment)
 router.use('/recipes', recipe)
 router.use('/menus', menu)
 router.use('/ingredients', ingredient)
-router.use('/menus', menu)
 router.use('/plannings', planning)
 router.use('/shopping-list-ingredients', shoppingListIngredient)
 router.use('/shopping-lists', shoppingList)
