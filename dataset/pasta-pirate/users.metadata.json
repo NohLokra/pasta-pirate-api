@@ -1,1 +1,1 @@
-{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"pasta-pirate.users"}],"uuid":"96670926ce584e06ad2496f6901c5750"}
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"pasta-pirate.users"},{"v":2,"unique":true,"key":{"email":1},"name":"email_1","ns":"pasta-pirate.users","background":true},{"v":2,"key":{"name":1},"name":"name_1","ns":"pasta-pirate.users","background":true},{"v":2,"key":{"keywords":1},"name":"keywords_1","ns":"pasta-pirate.users","background":true}],"uuid":"2c3b6b74195844e3a05cbb62ace3baa2"}
