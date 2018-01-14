@@ -1,4 +1,0 @@
-{ "_id" : ObjectId("5a3b9bf2a9e001432b7c76c5"), "aliment" : ObjectId("5a3b7bb531e87169e767bdfa"), "quantity" : "200", "unit" : "g" }
-{ "_id" : ObjectId("5a3b9bf2a9e001432b7c76c6"), "aliment" : ObjectId("5a3b91f0e580653ac7eb01f1"), "quantity" : 8, "unit" : "L" }
-{ "_id" : ObjectId("5a3b9bf2a9e001432b7c76c7"), "aliment" : ObjectId("5a3b91a2e580653ac7eb01ef"), "quantity" : 2.5, "unit" : "kg" }
-
