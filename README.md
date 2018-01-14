@@ -8,9 +8,10 @@ Une API REST générée par [generator-rest](https://github.com/diegohaz/generat
 
 Avant de démarrer, assurez-vous que votre port 27017 soit disponible. C'est le port utilisé par défaut sur lequel va se binder notre container.
 
-```shell
+```
 sudo ./setup.sh
 ./script/create-users.sh
+npm install
 npm run dev
 ```
 
@@ -21,7 +22,7 @@ Votre API est maintenant lancée sur localhost:9000/
 Utilisez mongorestore depuis dataset pour que le dump de la base pasta-pirate soit restauré dans votre base de données locale.
 
 Pour créer l'utilisateur de test, lancer la ligne suivante:
-```shell
+```
 curl -X POST http://0.0.0.0:9000/api/users -i -d "email=admin@pirate.com&password=password&access_token=masterkey&role=admin"
 ```
 
