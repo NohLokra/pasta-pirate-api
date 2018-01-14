@@ -32,6 +32,10 @@ Les identifiants pour l'utilisateur de test sont:
   - email: admin@pirate.com
   - mot-de-passe: password
 
+### Vérifier le fonctionnement
+Le plus simple pour vérifier que l'API fonctionne corretement est de visiter l'url http://localhost:9000/api/aliments directement depuis le navigateur. Si tout est ok une liste des aliments devrait apparaitre.
+
+
 ## Structure du projet
 
 ### Résumé
